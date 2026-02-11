@@ -1,0 +1,30 @@
+{# Variables #}
+
+{% set blocks = blocks ??? null %}
+
+{# Output #}
+
+{% if blocks %}
+    {% for block in blocks.eagerly().collect() %}
+        {% set templateName = block.type.handle|split('_')|last|kebab %}
+        {% if templateName == "library-item" %}
+            {% include "blocks/_" ~ templateName with {
+                block: block,
+                loop: loop,
+                index: loop.index
+            } %}
+        {% else %}
+            {% set sectionAttributes = {
+                class: ["block", "block--" ~ templateName]|join(' '),
+                id: block.anchor ??? null
+            } %}
+            <section {{ attr(sectionAttributes) }}>
+                {% include "blocks/_" ~ templateName with {
+                    block: block,
+                    loop: loop,
+                    index: loop.index
+                } %}
+            </section>
+        {% endif %}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,11 @@
+{% extends "layouts/_base.twig" %}
+
+{% block body %}
+
+default page template
+
+{% include "components/_content-blocks" with {
+    blocks: entry.contentBlocks
+} %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+headingLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+name: Extended
+toolbar:
+  - sourceEditing
+  - heading
+  - '|'
+  - bold
+  - bulletedList
+  - numberedList
+  - '|'
+  - link

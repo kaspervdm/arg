@@ -1,0 +1,88 @@
+@use "sass:math";
+@use "sass:string";
+@use "sass:list";
+@use "../sass-vars" as *;
+
+/**
+* The rem function is used to easily convert pixel values of a webdesign to a desired rem unit.
+* ----------------------------------------------
+* Example usage where you see 20px on the mobile webdesign
+*
+* .selector {
+*     margin: rem(20);
+* }
+* ----------------------------------------------
+* Example usage where you want the pixel value based on another root base size
+* This will be used mostly for overriding a value in a different breakpoint
+*
+* .selector {
+*     margin: rem(20, $desktop-font-size);
+*     padding: rem(20, 18);
+* }
+* ----------------------------------------------
+* This functions also accepts CSS variables
+*
+* .selector {
+*     margin: rem(var(--spacing-unit));
+* }
+*
+*/
+
+@function rem($pixelValue, $baseFontSize: $mobile-font-size) {
+    // If $pixelValue is a CSS variable, return it directly with rem unit
+    @if type-of($pixelValue) == "string" and string.index($pixelValue, "var(") == 1 {
+        // Choose the appropriate font size based on breakpoint
+        $baseFontSize: $mobile-font-size;
+
+        // Return the CSS variable divided by base font size
+        @return calc(#{$pixelValue} / #{$baseFontSize} * 1rem);
+    }
+
+    // For regular numeric values
+    $numericValue: $pixelValue;
+
+    // Calculate rem value using the selected base font size
+    @return math.div($numericValue, $baseFontSize) * 1rem;
+}
+
+/**
+* The rem mixin is used to quickly add multiple values by a property.
+* The values follow the same order as set in the root scaling system.
+* ----------------------------------------------
+* Example usage custom viewport widths:
+* where you want to set a margin of
+*   - 20px by mobile design
+*   - 32px by desktop design
+*   - 48px at max breakpoint
+*
+* .selector {
+*     @include rem(margin, (20,32,48));
+* }
+* ----------------------------------------------
+* As fallback the mixin also accepts a single value
+* but then it's recommended to use the rem function instead.
+*
+*/
+
+@mixin rem($property, $pixelValue) {
+    // If value is a list, add media queries
+    @if type-of($pixelValue) == "list" {
+        $length: length($pixelValue);
+        $mobile-value: list.nth($pixelValue, 1);
+        $desktop-value: if($length >= 2, list.nth($pixelValue, 2), list.nth($pixelValue, 1));
+        $max-value: if($length >= 3, list.nth($pixelValue, 3), $desktop-value);
+
+        // Set default (mobile) value using the rem function
+        #{$property}: rem($mobile-value, $mobile-font-size);
+
+        // Setting other values by their breakpoint and corresponding value
+        @include for-desktop-up {
+            #{$property}: rem($desktop-value, $desktop-font-size);
+        }
+        @include for-big-desktop-up {
+            #{$property}: rem($max-value, $desktop-lg-font-size);
+        }
+    } @else {
+        #{$property}: rem($pixelValue);
+    }
+}

@@ -1,0 +1,71 @@
+{# Variables #}
+
+{% set image = image ??? null %}
+{% set transform = transform ??? { width: 1600 } %}
+{% set cover = cover|default(false) %}
+{% set containerClasses = ['picture', 'picture--webp']|merge(containerClasses|default([])) %}
+{% set imageClasses = ['img', 'img--webp', 'lazyload']|merge(imageClasses|default([])) %}
+
+{% if cover %}
+    {% set containerClasses = containerClasses|merge(['picture--cover']) %}
+    {% set imageClasses = imageClasses|merge(['img--cover']) %}
+{% endif %}
+
+{# Webp #}
+{% set webpTransform = transform|merge({
+    interlace: "line",
+    format: "webp"
+}) %}
+{% set webpSrcset = image.getSrcset(['800w', '1600w', '3000w'], webpTransform) %}
+
+{# Default #}
+{% set defaultTransform = transform|merge({
+    interlace: "line",
+    format: transform.format ?? "jpeg"
+}) %}
+{% set defaultSrcset = image.getUrl(defaultTransform) %}
+{% set fallbackJpg = defaultSrcset|split(' ')|first %}
+
+{# Aspect Ratio #}
+{% set aspectRatio = image.getWidth(transform) / image.getHeight(transform) %}
+
+{# Focal Point #}
+{% set imgStyles = null %}
+{% if image.hasFocalPoint %}
+    {% set x = image.focalPoint|first * 100 ~ '%' %}
+    {% set y = image.focalPoint|last * 100 ~ '%' %}
+    {% set imgStyles = 'object-position: ' ~ [x, y]|join(' ') %}
+{% endif %}
+
+{# Picture attributes #}
+{% set pictureAttributes = {
+    "class": containerClasses
+} %}
+
+{% if not cover %}
+    {% set pictureAttributes = pictureAttributes|merge({
+        "style": 'aspect-ratio: ' ~ aspectRatio ~ ';',
+    }) %}
+{% endif %}
+
+{# Image attributes #}
+{% set imgAttributes = {
+    "class": imageClasses,
+    "width": image.getWidth(transform),
+    "height": image.getHeight(transform),
+    "alt": image.title,
+    "style": imgStyles,
+    "data-src": fallbackJpg,
+    "data-sizes": "auto",
+} %}
+
+{# Output #}
+
+{% if image %}
+    <picture {{ attr(pictureAttributes) }}>
+        {% if webpSrcset %}
+            <source data-srcset="{{ webpSrcset }}" type="image/webp">
+        {% endif %}
+        <img {{ attr(imgAttributes) }}>
+    </picture>
+{% endif %}

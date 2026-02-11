@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 630e894f-ea77-45be-a596-0140f4700b18 # Article
+handle: news
+maxAuthors: 1
+name: News
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  71b26e0c-8960-4d5b-a278-8dcac1aae074: # Nederlands
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: 'news/{slug}'
+type: channel

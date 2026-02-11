@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    display: block;
+    height: 100%;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+body {
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:where(body, h1, h2, h3, h4, p, figure, blockquote, dl, dd) {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+:where(ul, ol) {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    text-wrap: balance;
+}
+
+:where(input, button, textarea, select) {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+:where(button) {
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    line-height: normal;
+    appearance: none;
+}
+
+:where(a) {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+}
+
+textarea:not([rows]) {
+    min-height: 10em;
+}

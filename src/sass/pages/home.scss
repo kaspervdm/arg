@@ -1,0 +1,30 @@
+.home__manifesto {
+    position: relative;
+    background-color: var(--c-light);
+    padding: var(--spacer-large) 0 var(--spacer-xlarge);
+    z-index: 1;
+}
+
+.home__manifesto-text {
+    position: relative;
+    z-index: 1;
+    max-width: 23em;
+    text-wrap: balance;
+}
+
+.home__manifesto-indent {
+    display: inline-block;
+    width: 4ch;
+}
+
+.home__manifesto-line {
+    position: relative;
+    overflow: hidden;
+    line-height: inherit;
+}
+
+.home__manifesto-line__inner {
+    display: block;
+    padding-bottom: 0.1em;
+    margin-top: -0.1em;
+}

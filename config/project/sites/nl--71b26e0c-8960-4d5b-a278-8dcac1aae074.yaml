@@ -1,0 +1,9 @@
+baseUrl: '@siteUrlNl'
+enabled: true
+handle: nl
+hasUrls: true
+language: nl
+name: Nederlands
+primary: true
+siteGroup: c2beb3ab-398d-4180-8ba4-1671773e8952 # Default
+sortOrder: 1

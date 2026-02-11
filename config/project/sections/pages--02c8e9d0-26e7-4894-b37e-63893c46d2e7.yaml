@@ -1,0 +1,35 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 9643cc3c-ac04-4518-8586-31f957562f47 # Default
+  -
+    uid: 642c9fdd-1707-4752-9624-5c4dae8577cf # Projects
+  -
+    uid: c9f69ada-d026-43d5-afb7-4465f4756da4 # Legal
+handle: pages
+maxAuthors: 1
+name: Pages
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  71b26e0c-8960-4d5b-a278-8dcac1aae074: # Nederlands
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: '{parent.uri}/{slug}'
+structure:
+  maxLevels: null
+  uid: 2ddcdc72-c5be-4a95-90a4-afb7166742b3
+type: structure

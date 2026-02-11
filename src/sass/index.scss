@@ -1,0 +1,30 @@
+//lib
+@use "./lib/reset.scss" as *;
+@use "./lib/breakpoints" as *;
+@use "./lib/fluid" as *;
+@use "./lib/vars.scss" as *;
+@use "./lib/headings.scss" as *;
+@use "./lib/prose.scss" as *;
+@use "./lib/containers.scss" as *;
+
+//common
+@use "common.scss" as *;
+
+//atoms
+@use "./primitives/picture" as *;
+@use "./primitives/svg" as *;
+
+//organisms
+@use "./components/content-blocks" as *;
+@use "./components/footer" as *;
+@use "./components/header" as *;
+@use "./components/hero-home" as *;
+@use "./components/cards/project" as *;
+@use "./components/work" as *;
+
+//blocks
+@use "./blocks/image.scss" as *;
+@use "./blocks/image-text.scss" as *;
+
+//pages
+@use "./pages/home.scss" as *;

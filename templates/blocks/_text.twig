@@ -1,0 +1,15 @@
+{# Variables #}
+
+{% set text = text ??? block.textExtended ??? null %}
+
+{# Output #}
+
+{% if text %}
+    <div class="padding-global">
+        <div class="grid-layout grid-layout--small">
+            <div class="grid-layout__main prose">
+                {{ text }}
+            </div>
+        </div>
+    </div>
+{% endif %}

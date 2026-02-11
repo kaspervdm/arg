@@ -1,0 +1,21 @@
+{#
+    Usage:
+    ----------------------------
+    {% include "primitives/_video-loop" with {
+        videoUrl: "https://videos.pexels.com/video-files/5091624/5091624-hd_1920_1080_24fps.mp4",
+        triggerElement: ".js-video-wrapper",
+    } %}
+#}
+
+{# Variables #}
+
+{% set videoUrl = videoUrl ??? null %}
+{% set triggerElement = triggerElement ??? null %}
+
+{# Output #}
+
+{% if videoUrl %}
+    <video class="video-loop js-video-loop" autoplay muted loop playsinline data-start-stop-trigger="{{ triggerElement ?? null }}">
+        <source src="{{ videoUrl }}" type="video/mp4">
+    </video>
+{% endif %}

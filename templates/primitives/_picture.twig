@@ -1,0 +1,26 @@
+
+{# Variables #}
+
+{% set image = image|default(null) %}
+{% set transform = transform|default(null) %}
+{% set containerClasses = containerClasses ?? null %}
+{% set imageClasses = imageClasses ?? null %}
+{% set cover = cover|default(false) %}
+
+{# Output #}
+
+{% if image and image.extension == 'svg' %}
+    {% include 'primitives/_picture-svg' with {
+        image: image,
+        containerClasses: containerClasses,
+        imageClasses: imageClasses,
+        cover: cover,
+    } %}
+{% elseif image %}
+    {% include 'primitives/_picture-webp' with {
+        image: image,
+        containerClasses: containerClasses,
+        imageClasses: imageClasses,
+        cover: cover,
+    } %}
+{% endif %}

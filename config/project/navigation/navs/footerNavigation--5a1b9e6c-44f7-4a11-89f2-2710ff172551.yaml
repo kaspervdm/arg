@@ -1,0 +1,206 @@
+defaultPlacement: end
+fieldLayouts:
+  fda59f6d-9063-4417-9b95-d11b84d42817:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\TitleField
+            uid: 3ffcdb46-5284-49d8-a726-16ec48b766e6
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            elementCondition: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: verbb\navigation\fieldlayoutelements\NodeTypeElements
+            uid: 879525ef-9785-47f0-afbc-2d8d5614ed73
+            userCondition: null
+            warning: null
+          -
+            attribute: newWindow
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            elementCondition: null
+            id: null
+            includeInCards: false
+            instructions: null
+            label: null
+            mandatory: false
+            orientation: null
+            providesThumbs: false
+            requirable: true
+            required: false
+            tip: null
+            translatable: false
+            type: verbb\navigation\fieldlayoutelements\NewWindowField
+            uid: 8dedf4ae-6fa2-4dc2-a740-c5bef8c6f2cd
+            userCondition: null
+            warning: null
+            width: 100
+        name: Node
+        uid: 7e3d2a84-8f75-4cfb-8cf2-21c0b056e947
+        userCondition: null
+      -
+        elementCondition: null
+        elements:
+          -
+            attribute: urlSuffix
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            mandatory: false
+            max: null
+            maxlength: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: true
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            translatable: false
+            type: verbb\navigation\fieldlayoutelements\UrlSuffixField
+            uid: faae8423-c2f5-4afe-b66e-7348d9af871b
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            attribute: classes
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            autofocus: false
+            class: null
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            mandatory: false
+            max: null
+            maxlength: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            requirable: true
+            required: false
+            size: null
+            step: null
+            tip: null
+            title: null
+            translatable: false
+            type: verbb\navigation\fieldlayoutelements\ClassesField
+            uid: 0504dd80-b641-43cf-b1e1-4674bace104a
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            attribute: customAttributes
+            dateAdded: '2025-04-30T22:11:12+00:00'
+            elementCondition: null
+            id: null
+            includeInCards: false
+            instructions: null
+            label: null
+            mandatory: false
+            orientation: null
+            providesThumbs: false
+            requirable: true
+            required: false
+            tip: null
+            translatable: false
+            type: verbb\navigation\fieldlayoutelements\CustomAttributesField
+            uid: 74279eec-b7d5-419e-95ae-302cb8465a78
+            userCondition: null
+            warning: null
+            width: 100
+        name: Advanced
+        uid: 2f03c2ff-1f25-4bea-992b-845713b1652e
+        userCondition: null
+handle: footerNavigation
+instructions: ''
+maxNodes: null
+name: 'Footer navigation'
+permissions:
+  craft\elements\Asset:
+    enabled: ''
+    permissions: '*'
+  craft\elements\Category:
+    enabled: ''
+    permissions: '*'
+  craft\elements\Entry:
+    enabled: '1'
+    permissions: '*'
+  craft\elements\Tag:
+    enabled: ''
+    permissions: '*'
+  verbb\navigation\nodetypes\CustomType:
+    enabled: ''
+  verbb\navigation\nodetypes\PassiveType:
+    enabled: ''
+  verbb\navigation\nodetypes\SiteType:
+    enabled: '1'
+propagationMethod: all
+siteSettings:
+  71b26e0c-8960-4d5b-a278-8dcac1aae074: # Nederlands
+    enabled: true
+  3139adbc-146c-454b-8381-fa1044dd6190: # Français
+    enabled: true
+  b162ae81-a181-4ae8-b3da-2bf04db82b79: # English
+    enabled: true
+sortOrder: 2
+structure:
+  maxLevels: 1
+  uid: 929f3d86-79cb-4db5-b526-7f36e0c261da

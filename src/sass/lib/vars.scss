@@ -1,0 +1,60 @@
+@use "sass:math";
+@use "fluid" as *;
+
+:root {
+    // COLORS
+    --c-brand: #86ff5b;
+    --c-light: #ffffff;
+    --c-dark: #000000;
+    --c-text: var(--c-dark);
+    --c-accent: var(--c-brand);
+
+    // FONTS
+    --f-base: "PP Neue Montreal", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --f-special: var(--f-base);
+
+    // FONT WEIGHTS
+    --fw-strong: 500;
+
+    // Z-INDEXES
+    --z-header: 99;
+    --z-modal: 101;
+
+    // TYPOGRAPHY
+    //source: https://clamp.font-size.app/
+    //WARNING: since the html-font-size is overwritten, the rem values below must be entered
+    //according to the corresponding rem-value for that breakpoint.
+    //1rem on mobile could be different than 1rem on desktop
+    --fs-tiny: 0.625rem; //relative to root font size
+    --fs-xsmall: 0.75rem; //12 - relative to root font size
+    --fs-small: 0.875rem; //14 - relative to root font size
+    //   --fs-regular: 1rem; //16-16
+    //--fs-large: #{calculate-clamp(1.25rem, 1.5rem)}; //20-24
+    //   --fs-xlarge: #{calculate-clamp(1.5rem, 2rem)}; //24-32
+
+    // HEADINGS
+    --fs-heading-1: #{clampit(40, 72)};
+    --fs-heading-2: #{clampit(32, 55)};
+    --fs-heading-3: #{clampit(24, 40)};
+    --fs-heading-4: 1.2rem;
+    --fs-heading-5: 0.8rem;
+    --fs-heading-6: 0.6rem;
+
+    // CONTAINERS & PADDING
+    --padding-global: 2rem;
+    --max-width-xsmall: 32.5rem;
+    --max-width-small: 50rem;
+    --max-width-medium: 65rem;
+    --max-width-large: 72.5rem;
+
+    // SPACERS
+    --spacer-tiny: 0.5rem;
+    --spacer-xxsmall: 0.75rem;
+    --spacer-xsmall: 1rem;
+    --spacer-small: 1.5rem;
+    --spacer-medium: min(5vw, 2.5rem);
+    --spacer-large: min(8vw, 4rem);
+    --spacer-xlarge: min(12vw, 6rem);
+    --spacer-xxlarge: min(20vw, 10rem);
+    --spacer-huge: min(30vw, 15rem);
+}

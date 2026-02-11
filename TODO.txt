@@ -1,0 +1,6 @@
+TODO
+    - Caching (redis)
+    - Mail smtp (smtp2go?)
+    - Styleguide
+    - Check transforms in picture-webp
+    - Pass aspect ratio to picture partial to crop image

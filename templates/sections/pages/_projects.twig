@@ -1,0 +1,14 @@
+{% extends "layouts/_base.twig" %}
+
+{% block body %}
+
+    projects page template
+
+    {% for project in craft.entries.section('projects').all() %}
+        {% include "components/cards/project" with {
+            title: project.title,
+            image: project.image.eagerly().one() ?? null,
+        } %}
+    {% endfor %}
+
+{% endblock %}

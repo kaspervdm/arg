@@ -1,0 +1,21 @@
+headingLevels:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+name: Simple
+options:
+  link:
+    decorators:
+      openInNewTab:
+        attributes:
+          rel: 'noopener noreferrer'
+          target: _blank
+        label: 'Open in a new tab'
+        mode: manual
+toolbar:
+  - bold
+  - '|'
+  - link

@@ -1,0 +1,64 @@
+@use "sass:map";
+@use "sass:meta";
+@use "./sass-vars" as *;
+
+// Get breakpoint values from map
+@function breakpoint($breakpoint, $output: false, $map: $breakpoints) {
+    // if breakpoint exists in map, return
+    @if map.has-key($map, $breakpoint) {
+        $value: map.get($map, $breakpoint);
+
+        @if $output == "raw" {
+            @return $value;
+        } @else {
+            @return $value * 1px;
+        }
+
+        // else return value as entered in param
+    } @else {
+        @return $breakpoint;
+    }
+}
+
+/// Responsive manager
+/// @param {String} $breakpoint - Breakpoint
+/// @param {Bool} $max - Max-width or min-width
+/// @requires $breakpoints or custom breakpoint (e.g. 760px)
+/// @link http://sass-guidelin.es/#breakpoint-manager Sass Guidelines - Breakpoint Manager
+@mixin breakpoint($breakpoint, $max: false) {
+    $query: breakpoint($breakpoint, "raw");
+
+    @if not $query {
+        @if not $max {
+            @media screen and (min-width: meta.inspect($breakpoint)) {
+                @content;
+            }
+        } @else {
+            @media screen and (max-width: meta.inspect($breakpoint)) {
+                @content;
+            }
+        }
+    } @else {
+        @if not $max {
+            @media (min-width: #{if(meta.type-of($query) == "string", unquote($query), meta.inspect($query)) + px}) {
+                @content;
+            }
+        } @else {
+            @media (max-width: #{if(meta.type-of($query) == "string", unquote($query), meta.inspect($query - 1)) + px}) {
+                @content;
+            }
+        }
+    }
+}
+
+@mixin breakpoint-portrait() {
+    @media screen and (orientation: portrait) {
+        @content;
+    }
+}
+
+@mixin breakpoint-landscape() {
+    @media screen and (orientation: landscape) {
+        @content;
+    }
+}

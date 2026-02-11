@@ -1,0 +1,11 @@
+{# Variables #}
+
+{% set image = block.image.one() ??? null %}
+
+{# Output #}
+
+<div class="image">
+    {% include 'primitives/_picture' with {
+        image: image,
+    } %}
+</div>

@@ -1,0 +1,15 @@
+.footer {
+    padding: var(--padding-global);
+    //background-color: var(--c-accent);
+}
+
+.footer__layout {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer__logo {
+    font-size: var(--fs-large);
+}

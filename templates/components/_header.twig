@@ -1,0 +1,53 @@
+<header class="header js-header">
+    <div class="header__layout">
+        <div class="header__logo">
+            <a href="/">
+                {{ svg("static/icons/logo.svg")|attr({ class: "svg svg--auto" }) }}
+            </a>
+        </div>
+        <nav class="header__nav">
+            {% set navGroups = craft.navigation.nodes('mainNavigation').level(1).all() %}
+            {% if navGroups %}
+                {% for group in navGroups %}
+                    <div class="header__nav-group">
+                        {# <span class="header__nav-group-title">{{ group.title }}</span> #}
+                        {% set children = group.children %}
+                        {% if children|length %}
+                            <ul class="header__nav-list">
+                                {% for node in children %}
+                                    <li class="header__nav-item">
+                                        {% if node.url %}
+                                            <a
+                                                class="header__nav-link{{ node.classes ? ' ' ~ node.classes }}{{ node.active ? ' active' : '' }}"
+                                                href="{{ node.url }}"
+                                                {% if node.newWindow %} target="_blank" rel="noopener"{% endif %}
+                                                {% for attribute in node.customAttributes %}{{ attribute.attribute }}="{{ attribute.value }}"{% endfor %}>
+                                                <span class="header__nav-link-inner">
+                                                    <span class="header__nav-link-track">
+                                                        <span class="header__nav-link-text">{{ node.title }}</span>
+                                                        <span class="header__nav-link-text" aria-hidden="true">{{ node.title }}</span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        {% else %}
+                                            <span
+                                                class="{{ node.classes ? ' ' ~ node.classes }}{{ node.active ? ' active' : '' }}"
+                                                {% for attribute in node.customAttributes %}{{ attribute.attribute }}="{{ attribute.value }}"{% endfor %}>
+                                                    {{ node.title }}
+                                            </span>
+                                        {% endif %}
+                                        {% if node.textMultiline %}
+                                            <div class="header__nav-item-text">
+                                                {{ node.textMultiline }}
+                                            </div>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,30 @@
+{% extends "layouts/_base.twig" %}
+
+{% block body %}
+
+    {% include "components/_hero-home" with {
+        title: entry.titleMultiline,
+        image: entry.image.one(),
+    } %}
+
+    <div class="home__manifesto padding-global" data-manifesto>
+        <div class="home__manifesto-text heading-3" data-manifesto-text>
+            <span class="home__manifesto-indent" aria-hidden="true"></span>Wij creëren duurzame, milieuvriendelijke ruimtes die esthetiek, ecologische verantwoordelijkheid en functionaliteit in balans brengen. Met een sterke focus op detail harmoniseren onze ontwerpen met de natuur en bieden we innovatieve oplossingen die zowel woon- als werkomgevingen verbeteren. Zo dragen we bij aan een groenere, gezondere toekomst.
+        </div>
+    </div>
+
+    {% set workProjects = [
+        { title: 'Atelier Nord', workTitle: 'Woning A_N', url: '#', image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=800&fit=crop' },
+        { title: 'Bureau Zuid', workTitle: 'Woning B_Z', url: '#', image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=800&fit=crop' },
+        { title: 'Campus West', workTitle: 'Woning C_W', url: '#', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=800&fit=crop' },
+        { title: 'Dock East', workTitle: 'Woning D_E', url: '#', image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=800&fit=crop' },
+        { title: 'Estate Park', workTitle: 'Woning E_P', url: '#', image: 'https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=600&h=800&fit=crop' },
+        { title: 'Forum Central', workTitle: 'Woning F_C', url: '#', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=800&fit=crop' },
+    ] %}
+    {% include "components/_work" with { projects: workProjects } %}
+
+    {% include "components/_content-blocks" with {
+        blocks: entry.contentBlocks
+    } %}
+
+{% endblock %}

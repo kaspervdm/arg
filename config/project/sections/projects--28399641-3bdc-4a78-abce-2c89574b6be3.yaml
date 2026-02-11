@@ -1,0 +1,28 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 12b54e65-977b-4aac-9bd6-f8a371cca889 # Project
+handle: projects
+maxAuthors: 1
+name: Projects
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  71b26e0c-8960-4d5b-a278-8dcac1aae074: # Nederlands
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: 'projects/{slug}'
+type: channel

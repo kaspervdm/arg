@@ -1,0 +1,38 @@
+defaultPlacement: end
+enableVersioning: true
+entryTypes:
+  -
+    uid: 0852756a-98a4-490c-8e6a-62c596925190 # Homepage
+handle: home
+maxAuthors: 1
+name: Homepage
+previewTargets:
+  -
+    __assoc__:
+      -
+        - label
+        - 'Primary entry page'
+      -
+        - urlFormat
+        - '{url}'
+      -
+        - refresh
+        - '1'
+propagationMethod: all
+siteSettings:
+  71b26e0c-8960-4d5b-a278-8dcac1aae074: # Nederlands
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: __home__
+  3139adbc-146c-454b-8381-fa1044dd6190: # Français
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: __home__
+  b162ae81-a181-4ae8-b3da-2bf04db82b79: # English
+    enabledByDefault: true
+    hasUrls: true
+    template: _routing.twig
+    uriFormat: __home__
+type: single

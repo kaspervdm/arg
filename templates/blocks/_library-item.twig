@@ -1,0 +1,14 @@
+{# Variables #}
+
+{% set libraryItem = block.libraryItem.one() ??? null %}
+
+{# Output #}
+
+{% if libraryItem %}
+    {% include "components/_content-blocks" with {
+        blocks: libraryItem.contentBlocks,
+    } %}
+{% else %}
+    {# Deliberately  inline styles for this. It's an alert message  #}
+    <span style="background: red; color: white;">**Missing Library item in block {{block.id}}**</span>
+{% endif %}

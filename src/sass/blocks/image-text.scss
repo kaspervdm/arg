@@ -1,0 +1,14 @@
+@use "./../lib/breakpoints.scss" as *;
+
+.block--image-text {
+    .image-text__layout {
+        align-items: center;
+        gap: var(--spacer-medium) 0;
+    }
+
+    .image-text__text-inner {
+        @include breakpoint(lg) {
+            margin-right: clamp(2rem, 5vw, 10rem);
+        }
+    }
+}

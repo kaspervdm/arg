@@ -1,0 +1,59 @@
+@mixin heading-1 {
+    font-family: var(--f-special);
+    font-size: var(--fs-heading-1);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.85;
+}
+
+@mixin heading-2 {
+    font-family: var(--f-special);
+    font-size: var(--fs-heading-2);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+}
+
+@mixin heading-3 {
+    font-family: var(--f-special);
+    font-size: var(--fs-heading-3);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+@mixin heading-4 {
+    font-family: var(--f-special);
+    font-size: var(--fs-heading-4);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+@mixin heading-5 {
+    font-family: var(--f-special);
+    font-size: var(--fs-heading-5);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    line-height: 1;
+}
+
+.heading-1 {
+    @include heading-1;
+}
+
+.heading-2 {
+    @include heading-2;
+}
+
+.heading-3 {
+    @include heading-3;
+}
+
+.heading-4 {
+    @include heading-4;
+}
+
+.heading-5 {
+    @include heading-5;
+}

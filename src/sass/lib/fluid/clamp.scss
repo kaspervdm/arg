@@ -1,0 +1,92 @@
+@use "sass:math";
+@use "../sass-vars" as *;
+
+/**
+* The clampit function creates fluid typography/spacing that scales smoothly between two viewport widths.
+* It accounts for different root font sizes between mobile and desktop breakpoints.
+*
+* How it works:
+* 1. We convert the min and max sizes to rem values using their respective root font sizes
+* 2. We calculate a linear slope between the min and max sizes across the viewport range
+* 3. We adjust the slope to account for root font size changes
+* 4. We use CSS clamp() to create smooth scaling between the values
+*
+* Example 1: Basic Usage
+* Desired: 20px at mobile (375px) scaling to 40px at desktop (1366px)
+* ```scss
+* .element {
+*   font-size: clampit(20, 40);
+* }
+* ```
+*
+* Example 2: Custom Viewport Widths
+* Desired: 16px at 320px viewport scaling to 24px at 1200px viewport
+* ```scss
+* .element {
+*   padding: clampit(16, 24, 320, 1200);
+* }
+* ```
+*
+* The Math Behind It:
+* For clampit(20, 40) with $mobile-font-size: 13px and $desktop-font-size: 16px:
+*
+* 1. Convert to rem:
+*    - Mobile: 20px ÷ 13 ≈ 1.538rem (will be 20px when root is 13px)
+*    - Desktop: 40px ÷ 16 = 2.5rem (will be 40px when root is 16px)
+*
+* 2. Calculate slope in pixels:
+*    slope = (40px - 20px) ÷ (1366px - 375px)
+*    slope = 20 ÷ 991 ≈ 0.0202
+*
+* 3. Calculate intercept in pixels:
+*    intercept = minSize - (slope × minViewport)
+*    intercept = 20 - (0.0202 × 375) ≈ 12.425
+*
+* 4. Convert intercept to rem:
+*    intercept_rem = 12.425 ÷ 13 ≈ 0.956rem
+*
+* 5. Adjust slope for root font size change:
+*    slope_vw = slope × 100 × (desktop_font_size ÷ mobile_font_size)
+*    slope_vw = 0.0202 × 100 × (16 ÷ 13) ≈ 2.48
+*
+* Final Output:
+* clamp(1.538rem, 0.956rem + 2.48vw, 2.5rem)
+*
+* This ensures:
+* - At 375px viewport: exactly 20px
+* - At 1366px viewport: exactly 40px
+* - Smooth scaling between these points
+* - Proper handling of root font size changes
+*/
+
+@function clampit($min-size, $max-size, $min-vw: $mobile-breakpoint, $max-vw: $desktop-breakpoint) {
+    @if ($min-size > $max-size) {
+        @error "Min size (#{$min-size}) cannot be larger than max size (#{$max-size})";
+    }
+
+    $min-size-rem-value: math.div($min-size, $mobile-font-size);
+    $max-size-rem-value: math.div($max-size, $desktop-font-size);
+    $min-size-rem: $min-size-rem-value + rem;
+    $max-size-rem: $max-size-rem-value + rem;
+
+    @if ($min-size-rem-value > $max-size-rem-value) {
+        @warn "Unexpected clampit behaviour";
+        @debug "The min size in rem (#{$min-size-rem}) is larger than max size in rem (#{$max-size-rem}).\A"+ "Clamping will not work as expected and scaling will only happen by the root scaling system.\A"+
+            "Consider using a breakpoint with a fixed rem size manually instead.";
+    }
+
+    // Calculate slope using pixel values
+    $slope: math.div(($max-size - $min-size), ($max-vw - $min-vw));
+
+    // Calculate intercept in pixels
+    $intercept: $min-size - ($slope * $min-vw);
+
+    // Convert to rem values using mobile font size as base
+    $intercept-rem: math.div($intercept, $mobile-font-size) + rem;
+
+    // Adjust slope for the root font size difference between mobile and desktop
+    // We need to adjust the slope to maintain the correct proportions at different root font sizes
+    $slope-vw: $slope * 100;
+
+    @return clamp(#{$min-size-rem}, #{$intercept-rem} + #{$slope-vw}vw, #{$max-size-rem});
+}

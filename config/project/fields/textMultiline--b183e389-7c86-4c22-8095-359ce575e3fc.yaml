@@ -1,0 +1,24 @@
+columnSuffix: null
+handle: textMultiline
+instructions: null
+name: Text
+searchable: true
+settings:
+  availableTransforms: ''
+  availableVolumes: '*'
+  characterLimit: null
+  ckeConfig: 8c42da3b-cc42-49f1-8cd4-d333d4a3fbaa # Multiline
+  createButtonLabel: null
+  defaultTransform: null
+  fullGraphqlData: true
+  purifierConfig: null
+  purifyHtml: true
+  showUnpermittedFiles: false
+  showUnpermittedVolumes: false
+  showWordCount: false
+  sourceEditingGroups:
+    - __ADMINS__
+  wordLimit: null
+translationKeyFormat: null
+translationMethod: none
+type: craft\ckeditor\Field

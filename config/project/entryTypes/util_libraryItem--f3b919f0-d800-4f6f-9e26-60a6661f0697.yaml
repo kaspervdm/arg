@@ -1,0 +1,68 @@
+color: null
+fieldLayouts:
+  10cc8e76-d88b-4b2f-be39-af9a90d9fe37:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            autocapitalize: true
+            autocomplete: false
+            autocorrect: true
+            class: null
+            dateAdded: '2025-06-04T19:41:53+00:00'
+            disabled: false
+            elementCondition: null
+            id: null
+            includeInCards: false
+            inputType: null
+            instructions: null
+            label: null
+            max: null
+            min: null
+            name: null
+            orientation: null
+            placeholder: null
+            providesThumbs: false
+            readonly: false
+            required: true
+            size: null
+            step: null
+            tip: null
+            title: null
+            type: craft\fieldlayoutelements\entries\EntryTitleField
+            uid: f444cc02-dcf3-43c9-99f7-2f242c23d97f
+            userCondition: null
+            warning: null
+            width: 100
+          -
+            dateAdded: '2025-06-04T19:43:26+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: a453d141-03c2-4287-aca7-f77ed30cc49e # Content blocks
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: false
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 0e3436e6-7383-403d-a73d-6b81e196b324
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 97236108-0fdd-4858-88c3-55d15a1b2bd9
+        userCondition: null
+handle: util_libraryItem
+hasTitleField: true
+icon: null
+name: 'Library Item'
+showSlugField: false
+showStatusField: false
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

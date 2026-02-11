@@ -1,0 +1,26 @@
+{# Variables #}
+
+{% set title = title ??? null %}
+{% set image = image.one() ??? image ??? null %}
+
+{# Output #}
+
+{# <div class="padding-global"> #}
+    <div class="hero-home" data-hero-home>
+        <div class="hero-home__content">
+            {% if title %}
+                <div class="hero-home__title-wrap">
+                    <h1 class="hero-home__title heading-1" data-hero-home-title>{{ title|nl2br }}</h1>
+                </div>
+            {% endif %}
+            {% if image %}
+                <div class="hero-home__image">
+                    {% include 'primitives/_picture' with {
+                        image: image,
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+        <div class="hero-home__spacer"></div>
+    </div>
+{# </div> #}

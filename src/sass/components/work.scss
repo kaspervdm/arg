@@ -1,0 +1,240 @@
+// Featured work: sticky section over ~400vh, 5 columns, staggered items align on scroll
+.home__work {
+    position: relative;
+    background-color: var(--c-light);
+    margin-bottom: 300svh;
+}
+
+.home__work__sticky {
+    position: sticky;
+    top: -1px;
+    padding: var(--padding-global) 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.home__work__head {
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+}
+
+// Animated line (replaces border) — width animated via GSAP scaleX
+.home__work__head-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.3);
+    transform-origin: left center;
+}
+
+.home__work__label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: var(--fw-strong);
+    text-transform: uppercase;
+    color: var(--c-text);
+    margin: var(--spacer-small) 0;
+}
+
+.home__work__label-dot {
+    flex-shrink: 0;
+    width: 0.375em;
+    height: 0.375em;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.home__work__label-text {
+    overflow: hidden;
+}
+
+.home__work__label-inner {
+    display: inline-block;
+}
+
+.home__work__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacer-xsmall);
+    align-items: start;
+    margin-bottom: 20svh;
+}
+
+.home__work__item {
+    position: sticky;
+    top: calc(1rem + 2 * var(--spacer-small));
+}
+
+// Stagger vertical position across ~400vh so they stack and align as user scrolls
+.home__work__item:nth-child(1) {
+    margin-top: 0;
+}
+.home__work__item:nth-child(4) {
+    margin-top: 65vh;
+}
+.home__work__item:nth-child(2) {
+    margin-top: 130vh;
+}
+.home__work__item:nth-child(5) {
+    margin-top: 195vh;
+}
+.home__work__item:nth-child(3) {
+    margin-top: 260vh;
+}
+
+.home__work__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.home__work__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    background: var(--c-light);
+
+    img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // Scale up for parallax effect - ensures wrapper is always filled
+        transform: scale(1.15);
+        will-change: transform;
+    }
+}
+
+.home__work__item-title {
+    margin-top: var(--spacer-xsmall);
+    font-size: var(--fs-small);
+    font-weight: var(--fw-strong);
+    line-height: 1.2;
+}
+
+@media (max-width: 900px) {
+    .home__work__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home__work__footer {
+        margin-top: 24vh;
+    }
+
+    .home__work__item:nth-child(1) {
+        margin-top: 0;
+    }
+    .home__work__item:nth-child(2) {
+        margin-top: 8vh;
+    }
+    .home__work__item:nth-child(3) {
+        margin-top: 16vh;
+    }
+    .home__work__item:nth-child(4) {
+        margin-top: 0;
+    }
+    .home__work__item:nth-child(5) {
+        margin-top: 8vh;
+    }
+}
+
+@media (max-width: 500px) {
+    .home__work__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home__work__footer {
+        margin-top: 28vh;
+    }
+
+    .home__work__item:nth-child(n) {
+        margin-top: 0;
+    }
+    .home__work__item:nth-child(2) {
+        margin-top: 15vh;
+    }
+    .home__work__item:nth-child(3) {
+        margin-top: 8vh;
+    }
+    .home__work__item:nth-child(4) {
+        margin-top: 20vh;
+    }
+    .home__work__item:nth-child(5) {
+        margin-top: 12vh;
+    }
+}
+
+// Footer as grid row spanning all columns, follows grid sticky context
+.home__work__footer {
+    display: flex;
+    justify-content: center;
+}
+
+// Button styles
+.btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: var(--fw-strong);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn--primary {
+    position: relative;
+    height: 3em;
+    padding: 0 1.5em;
+    background-color: var(--c-dark);
+    color: var(--c-light);
+    border-radius: 1.5em;
+    overflow: hidden;
+
+    // Dot that appears on hover
+    &::before {
+        content: "";
+        position: absolute;
+        left: 1.5em;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 0.35em;
+        height: 0.35em;
+        border-radius: 50%;
+        background-color: currentColor;
+        opacity: 0;
+        transition:
+            opacity 0.15s ease,
+            transform 0.15s ease;
+    }
+
+    // Text container
+    .home__work__footer-link-text {
+        display: inline-block;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        padding: 0 2em;
+
+        &::before {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+            transition:
+                opacity 0.4s ease 0.1s,
+                transform 0.4s ease 0.1s;
+        }
+
+        .home__work__footer-link-text {
+            transform: translateX(0.5em);
+        }
+    }
+}

@@ -1,0 +1,41 @@
+columnSuffix: null
+handle: contentBlocks
+instructions: null
+name: 'Content blocks'
+searchable: false
+settings:
+  createButtonLabel: 'Add block'
+  defaultIndexViewMode: cards
+  enableVersioning: false
+  entryTypes:
+    -
+      __assoc__:
+        -
+          - uid
+          - 49343a72-777f-4bb6-b68a-71cf87e46efd # Image
+    -
+      __assoc__:
+        -
+          - uid
+          - 267ec522-acd1-4b43-b890-22eae19e29b8 # Image + Text
+    -
+      __assoc__:
+        -
+          - uid
+          - e267b119-32b9-433a-9d34-2bb50bde543d # Text
+    -
+      __assoc__:
+        -
+          - uid
+          - 24f64208-5ff2-4e1e-ba33-8784e75effb4 # Item from library
+  includeTableView: false
+  maxEntries: null
+  minEntries: null
+  pageSize: null
+  propagationKeyFormat: null
+  propagationMethod: all
+  showCardsInGrid: false
+  viewMode: blocks
+translationKeyFormat: null
+translationMethod: site
+type: craft\fields\Matrix

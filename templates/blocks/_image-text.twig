@@ -1,0 +1,25 @@
+{# Variables #}
+
+{% set image = block.image.one() ??? image.one() ?? image ??? null %}
+{% set text = block.textExtended ??? text ??? null %}
+
+{# Output #}
+
+<div class="image-text padding-global">
+    <div class="image-text__layout grid-layout">
+        <div class="image-text__text grid-layout__text">
+            <div class="image-text__text-inner prose">
+                {% if text %}
+                    {{ text }}
+                {% endif %}
+            </div>
+        </div>
+        <div class="image-text__image grid-layout__asset">
+            {% if image %}
+                {% include 'primitives/_picture' with {
+                    image: image,
+                } %}
+            {% endif %}
+        </div>
+    </div>
+</div>

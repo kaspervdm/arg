@@ -1,0 +1,245 @@
+dateModified: 1767824296
+elementSources:
+  craft\elements\Entry:
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: '*'
+      tableAttributes:
+        - status
+        - section
+        - postDate
+        - expiryDate
+        - link
+      type: native
+    -
+      heading: Items
+      type: heading
+    -
+      key: 'single:46ea6134-3895-45d2-bc75-1dad5550b7dd' # Homepage
+      type: native
+    -
+      defaultSort:
+        - structure
+        - asc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:02c8e9d0-26e7-4894-b37e-63893c46d2e7' # Pages
+      tableAttributes:
+        - status
+        - postDate
+        - expiryDate
+        - link
+      type: native
+    -
+      key: 'section:f7cc86de-d5f3-4a46-8605-496fd2dc8d51' # News
+      type: native
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:28399641-3bdc-4a78-abce-2c89574b6be3' # Projects
+      tableAttributes:
+        - status
+        - postDate
+        - expiryDate
+        - link
+      type: native
+    -
+      heading: Settings
+      type: heading
+    -
+      defaultSort:
+        - postDate
+        - desc
+      defaultViewMode: ''
+      disabled: false
+      key: 'section:cbc74f9b-3359-4b4e-93e9-3b3e46c34e90' # Library
+      tableAttributes:
+        - status
+        - postDate
+        - expiryDate
+        - link
+      type: native
+email:
+  fromEmail: $SYSTEM_EMAIL
+  fromName: $SITE_NAME
+  replyToEmail: null
+  template: null
+  transportSettings:
+    host: $SMTP_HOST
+    password: ''
+    port: $SMTP_PORT
+    useAuthentication: $SMTP_USE_AUTH
+    username: ''
+  transportType: craft\mail\transportadapters\Smtp
+fs:
+  images:
+    hasUrls: true
+    name: Images
+    settings:
+      path: '@uploads/images'
+    type: craft\fs\Local
+    url: '@primaryBaseUrl/uploads/images'
+meta:
+  __names__:
+    0fe7d945-4a31-41a0-b6f0-04d63ebd4e38: 'Image position' # Image position
+    1b4d6191-958f-4c77-9319-ac6f729439b5: Images # Images
+    1f2c03b7-3707-4d1d-8eba-a28d0bb11683: Image # Image
+    02c8e9d0-26e7-4894-b37e-63893c46d2e7: Pages # Pages
+    5a1b9e6c-44f7-4a11-89f2-2710ff172551: 'Footer navigation' # Footer navigation
+    5e4701d1-92f8-4ce7-a280-a6655589ef5b: 'Main navigation' # Main navigation
+    8c42da3b-cc42-49f1-8cd4-d333d4a3fbaa: Multiline # Multiline
+    12b54e65-977b-4aac-9bd6-f8a371cca889: Project # Project
+    24f64208-5ff2-4e1e-ba33-8784e75effb4: 'Item from library' # Item from library
+    30ce53b1-7702-4ef5-8685-67601a21c82c: Title # Title
+    46ea6134-3895-45d2-bc75-1dad5550b7dd: Homepage # Homepage
+    051c2b5c-36a2-45aa-b598-8bbff19c5cad: Links # Links
+    71b26e0c-8960-4d5b-a278-8dcac1aae074: Nederlands # Nederlands
+    82df25a7-f2e9-4f2c-b823-b8cc4b1458c9: Title # Title
+    267ec522-acd1-4b43-b890-22eae19e29b8: 'Image + Text' # Image + Text
+    630e894f-ea77-45be-a596-0140f4700b18: Article # Article
+    642c9fdd-1707-4752-9624-5c4dae8577cf: Projects # Projects
+    3139adbc-146c-454b-8381-fa1044dd6190: Français # Français
+    3321c17f-b2a7-43e4-a897-3051f3c96072: Text # Text
+    03854a52-e4a1-45b9-80b3-2b839bb732a4: Link # Link
+    9643cc3c-ac04-4518-8586-31f957562f47: Default # Default
+    24193f51-fddb-4c88-85f6-ca1c71217f58: 'Library Item' # Library Item
+    49343a72-777f-4bb6-b68a-71cf87e46efd: Image # Image
+    89088f6d-fdf5-4ced-b1a9-1ebfe62b1436: Text # Text
+    388051db-99ad-48ef-96e0-266fa7a25eef: Extended # Extended
+    0852756a-98a4-490c-8e6a-62c596925190: Homepage # Homepage
+    28399641-3bdc-4a78-abce-2c89574b6be3: Projects # Projects
+    a453d141-03c2-4287-aca7-f77ed30cc49e: 'Content blocks' # Content blocks
+    aeda86d4-1015-437a-b290-917dee04a819: Simple # Simple
+    b162ae81-a181-4ae8-b3da-2bf04db82b79: English # English
+    b183e389-7c86-4c22-8095-359ce575e3fc: Text # Text
+    c2beb3ab-398d-4180-8ba4-1671773e8952: Default # Default
+    c5ab9bcc-ed66-42de-ba15-98b2f27305d2: 'Public Schema' # Public Schema
+    c9f69ada-d026-43d5-afb7-4465f4756da4: Legal # Legal
+    cbc74f9b-3359-4b4e-93e9-3b3e46c34e90: Library # Library
+    e267b119-32b9-433a-9d34-2bb50bde543d: Text # Text
+    f3b919f0-d800-4f6f-9e26-60a6661f0697: 'Library Item' # Library Item
+    f7cc86de-d5f3-4a46-8605-496fd2dc8d51: News # News
+    fc1893eb-7808-4b02-a5f0-9e57ed7ffafb: Images # Images
+plugins:
+  ckeditor:
+    edition: standard
+    enabled: true
+    schemaVersion: 3.0.0.0
+  empty-coalesce:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  expanded-singles:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+  image-resizer:
+    edition: standard
+    enabled: true
+    schemaVersion: 2.0.0
+    settings:
+      assetSourceSettings:
+        1:
+          __assoc__:
+            -
+              - enabled
+              - '1'
+            -
+              - imageWidth
+              - ''
+            -
+              - imageHeight
+              - ''
+            -
+              - imageQuality
+              - ''
+      enabled: true
+      imageHeight: 3000
+      imageQuality: 100
+      imageWidth: 3000
+      nonDestructiveCrop: false
+      nonDestructiveResize: false
+      skipLarger: true
+      useGlobalSettings: true
+  navigation:
+    edition: standard
+    enabled: true
+    licenseKey: 6YQOZFG5M8ZXTJZGHII10AOA
+    schemaVersion: 2.1.1
+  seomatic:
+    edition: standard
+    enabled: true
+    licenseKey: 3WXHH0BA3CLKMMI820V8PF7Y
+    schemaVersion: 3.0.13
+    settings:
+      addHrefLang: true
+      addPaginatedHreflang: true
+      addXDefaultHrefLang: true
+      alwaysIncludeCanonicalUrls: false
+      cpTitlePrefix: '⚙ '
+      cspNonce: ''
+      cspScriptSrcPolicies:
+        -
+          __assoc__:
+            -
+              - policy
+              - "'self'"
+      devModeCpTitlePrefix: '🚧⚙ '
+      devModeTitlePrefix: '🚧 '
+      displayAnalysisSidebar: true
+      displayPreviewSidebar: false
+      enableDebugToolbarPanel: true
+      enableJsonLdEndpoint: false
+      enableMetaContainerEndpoint: false
+      enableSeoFileLinkEndpoint: false
+      environment: live
+      excludeNonCanonicalUrls: false
+      generatorEnabled: true
+      headersEnabled: true
+      includeHomepageInBreadcrumbs: true
+      lowercaseCanonicalUrl: true
+      manuallySetEnvironment: false
+      maxDescriptionLength: 155
+      maxTitleLength: 70
+      metaCacheDuration: 0
+      pluginName: SEOmatic
+      regenerateSitemapsAutomatically: true
+      renderEnabled: true
+      separatorChar: '|'
+      sidebarDisplayPreviewTypes:
+        - google
+        - twitter
+        - facebook
+      siteGroupsSeparate: true
+      siteUrlOverride: ''
+      sitemapsEnabled: true
+      socialMediaPreviewTarget: false
+      submitSitemaps: true
+      truncateDescriptionTags: true
+      truncateTitleTags: true
+      xDefaultSite: 0
+  vite:
+    edition: standard
+    enabled: true
+    schemaVersion: 1.0.0
+system:
+  edition: solo
+  live: true
+  name: $SITE_NAME
+  retryDuration: null
+  schemaVersion: 5.8.0.3
+  timeZone: Europe/Brussels
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

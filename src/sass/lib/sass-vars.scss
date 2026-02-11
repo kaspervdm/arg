@@ -1,0 +1,20 @@
+$mobile-breakpoint: 375;
+$desktop-breakpoint: 1440;
+$desktop-lg-breakpoint: 1920;
+$max-breakpoint-and-up: 2560;
+
+$breakpoints: (
+    "xs": $mobile-breakpoint,
+    "sm": 576,
+    "md": 768,
+    "lg": 992,
+    "xl": 1200,
+    "design": $desktop-breakpoint,
+    "wide": $desktop-lg-breakpoint,
+    "max": $max-breakpoint-and-up,
+) !default;
+
+$mobile-font-size: 14;
+$desktop-font-size: 16;
+$desktop-lg-font-size: 20;
+$max-font-size: 22;

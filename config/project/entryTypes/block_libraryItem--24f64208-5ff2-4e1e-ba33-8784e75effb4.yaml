@@ -1,0 +1,38 @@
+color: fuchsia
+fieldLayouts:
+  88a74806-ba99-443c-99ff-125b6132e9c0:
+    tabs:
+      -
+        elementCondition: null
+        elements:
+          -
+            dateAdded: '2025-06-04T19:50:09+00:00'
+            editCondition: null
+            elementCondition: null
+            fieldUid: 24193f51-fddb-4c88-85f6-ca1c71217f58 # Library Item
+            handle: null
+            includeInCards: false
+            instructions: null
+            label: null
+            providesThumbs: false
+            required: true
+            tip: null
+            type: craft\fieldlayoutelements\CustomField
+            uid: 09b6c057-4003-4cc3-9373-f817c5a78223
+            userCondition: null
+            warning: null
+            width: 100
+        name: Content
+        uid: 631cae18-8841-41f2-8643-53f1c552830d
+        userCondition: null
+handle: block_libraryItem
+hasTitleField: false
+icon: cubes
+name: 'Item from library'
+showSlugField: false
+showStatusField: false
+slugTranslationKeyFormat: null
+slugTranslationMethod: site
+titleFormat: null
+titleTranslationKeyFormat: null
+titleTranslationMethod: site

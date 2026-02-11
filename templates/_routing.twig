@@ -1,0 +1,22 @@
+{#
+    Routing Template for Craft CMS
+
+    This template handles dynamic routing based on section and entry type handles.
+    The naming convention follows this pattern:
+    - Section templates should be placed in: _sections/[section-handle]/
+    - Entry type templates should be named: [type-handle].twig
+    - Fallback template for a section: entry.twig
+    - The fallback template can be used for entry types that share the same section template
+
+    Example:
+    For a section handle "blog" and type handle "page_article", it will look for:
+#}
+
+{% set sectionHandle = entry.section.handle|kebab ??? null %}
+{% set templateName = entry.type.handle|split('_')|last|kebab ??? null %}
+
+{% if sectionHandle and templateName %}
+    {% include "sections/" ~ sectionHandle ~ "/_" ~ templateName %}
+{% else %}
+	{% exit 404 %}
+{% endif %}

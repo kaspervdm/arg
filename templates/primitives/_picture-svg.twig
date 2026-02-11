@@ -1,0 +1,17 @@
+{# Variables #}
+
+{% set image = image ??? null %}
+{% set containerClasses = ['picture', 'picture--svg']|merge(containerClasses|default([])) %}
+{% set imageClasses = ['img', 'img--svg']|merge(imageClasses|default([])) %}
+
+{% set containerAttributes = {
+    "class": containerClasses|join(" "),
+} %}
+
+{# Output #}
+
+{% if image and image.extension == 'svg' %}
+    <div {{ attr(containerAttributes) }}>
+        <img class="{{ imageClasses|join(" ") }}" src="{{ image.url }}" alt="{{ image.alt }}">
+    </div>
+{% endif %}

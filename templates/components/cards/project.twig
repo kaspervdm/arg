@@ -1,0 +1,18 @@
+{# Variables #}
+
+{% set title = title|default(null) %}
+{% set image = image|default(null) %}
+
+{# Output #}
+
+<article class="card card--project">
+    <h2 class="card__title">{{ title }}</h2>
+    {% if image %}
+        <div class="card__image">
+            {% include "primitives/_picture" with {
+                image: image,
+                cover: true,
+            } %}
+        </div>
+    {% endif %}
+</article>

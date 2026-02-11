@@ -1,0 +1,100 @@
+@use "../sass-vars" as *;
+
+/**
+* The root scaling system is used to create a fluid size globally for the entire project.
+* It uses a base root size which will be responsive to the screen width.
+* By using rem values, we ensure that the value will be responsive in pixels.
+*
+* The above link will help you visualize the root scaling system.
+* How to start with the root scaling system?
+*
+* 1. Get the body text size on the mobile design.
+*    --> use this for $mobile-font-size
+* 2. Get the body text size on the desktop design.
+*    --> use this for $desktop-font-size
+* 3. By default we use the smallest breakpoint of 375px for mobile.
+*    The best reference is to use the mobile design width.
+* 4. The max-breakpoint is the largest breakpoint we want to support.
+*    The font size will stay the same after this breakpoint
+*
+    Root Font Size (px)
+       |
+ 23 px |                               ●-------------
+       |                            /
+       |                        /
+ 20 px |                   ●
+       |                /
+       |            /
+ 18 px |         ●
+       |      /
+       |  /
+ 16 px ●---------●---------●-----------●------------- Screen Width (px)
+       375px    1440px    1920px      2560px
+       mobile   desktop   desktop-lg  max-breakpoint-and-up
+*
+*/
+
+/*
+* That's it for the root scaling system.
+* Don't change anything from here, or the root scaling system will break.
+*/
+
+:root {
+    --font-size-0: #{calc($mobile-font-size / 16)};
+
+    @if ($mobile-font-size != $desktop-font-size) {
+        --font-from-1: #{$mobile-font-size};
+        --font-to-1: #{$desktop-font-size};
+        --vw-from-1: calc(#{$mobile-breakpoint} / 100);
+        --vw-to-1: calc(#{$desktop-breakpoint} / 100);
+        --coefficient-1: calc((var(--font-to-1) - var(--font-from-1)) / (var(--vw-to-1) - var(--vw-from-1)));
+        --base-1: calc((var(--font-from-1) - var(--vw-from-1) * var(--coefficient-1)) / 16);
+    } @else {
+        --font-size-1: #{calc($desktop-font-size / 16)};
+    }
+
+    --font-from-2: #{$desktop-font-size};
+    --font-to-2: #{$desktop-lg-font-size};
+    --vw-from-2: calc(#{$desktop-breakpoint} / 100);
+    --vw-to-2: calc((#{$desktop-lg-breakpoint} - 1) / 100);
+    --coefficient-2: calc((var(--font-to-2) - var(--font-from-2)) / (var(--vw-to-2) - var(--vw-from-2)));
+    --base-2: calc((var(--font-from-2) - var(--vw-from-2) * var(--coefficient-2)) / 16);
+
+    --font-from-3: #{$desktop-lg-font-size};
+    --font-to-3: #{$max-font-size};
+    --vw-from-3: calc((#{$desktop-lg-breakpoint} - 1) / 100);
+    --vw-to-3: calc(#{$max-breakpoint-and-up} / 100);
+    --coefficient-3: calc((var(--font-to-3) - var(--font-from-3)) / (var(--vw-to-3) - var(--vw-from-3)));
+    --base-3: calc((var(--font-from-3) - var(--vw-from-3) * var(--coefficient-3)) / 16);
+
+    --font-size-4: #{calc($max-font-size / 16)};
+}
+
+html {
+    font-size: calc(var(--font-size-4) * 1rem);
+}
+@media screen and (max-width:#{$max-breakpoint-and-up}px) {
+    html {
+        font-size: calc(var(--base-3) * 1rem + var(--coefficient-3) * 1vw);
+    }
+}
+@media screen and (max-width:#{$desktop-lg-breakpoint}px) {
+    html {
+        font-size: calc(var(--base-2) * 1rem + var(--coefficient-2) * 1vw);
+    }
+}
+
+@media screen and (max-width:#{$desktop-breakpoint}px) {
+    html {
+        @if ($mobile-font-size != $desktop-font-size) {
+            font-size: calc(var(--base-1) * 1rem + var(--coefficient-1) * 1vw);
+        } @else {
+            font-size: calc(var(--font-size-1) * 1rem);
+        }
+    }
+}
+@media screen and (max-width:#{$mobile-breakpoint}px) {
+    html {
+        font-size: calc(var(--font-size-0) * 1rem);
+    }
+}

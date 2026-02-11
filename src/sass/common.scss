@@ -1,0 +1,29 @@
+html,
+body {
+    scroll-behavior: smooth;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgb(120 98 98 / 0%);
+    text-rendering: optimizelegibility;
+    text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--f-base);
+    line-height: 1.1;
+    background-color: var(--c-light);
+    color: var(--c-dark);
+}
+
+.page__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.page__content {
+    flex: 1;
+    min-height: 100vh;
+}

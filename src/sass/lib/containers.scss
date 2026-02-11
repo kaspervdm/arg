@@ -1,0 +1,59 @@
+@use "./breakpoints" as *;
+
+.padding-global {
+    display: grid;
+    grid-template-columns: var(--padding-global) [main] 1fr var(--padding-global);
+
+    > * {
+        grid-column: main;
+    }
+}
+
+/* Base grid layout */
+.grid-layout {
+    --grid-layout-width: var(--max-width-large);
+    --grid-layout-gap: 1rem;
+
+    display: grid;
+    grid-template-columns:
+        [full-start] minmax(0, 1fr)
+        [main-start] minmax(0, calc(var(--grid-layout-width) / 2 - var(--grid-layout-gap) / 2))
+        [main-middle-left] minmax(0, var(--grid-layout-gap))
+        [main-middle] minmax(0, var(--grid-layout-gap))
+        [main-middle-right] minmax(0, calc(var(--grid-layout-width) / 2 - var(--grid-layout-gap) / 2))
+        [main-end] minmax(0, 1fr)
+        [full-end];
+
+    &--medium {
+        --grid-layout-width: var(--max-width-medium);
+    }
+
+    &--small {
+        --grid-layout-width: var(--max-width-small);
+    }
+
+    > * {
+        grid-column: main;
+    }
+}
+
+.grid-layout__asset {
+    order: -1;
+}
+
+@include breakpoint(lg) {
+    .grid-layout {
+        > * {
+            grid-row: 1;
+        }
+
+        .grid-layout__text {
+            grid-column: main-start / main-middle-left;
+        }
+
+        .grid-layout__asset {
+            grid-column: main-middle-right / main-end;
+            order: 0;
+        }
+    }
+}

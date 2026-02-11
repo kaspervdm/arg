@@ -1,0 +1,25 @@
+columnSuffix: null
+handle: libraryItem
+instructions: null
+name: 'Library Item'
+searchable: false
+settings:
+  allowSelfRelations: false
+  branchLimit: null
+  defaultPlacement: end
+  maintainHierarchy: false
+  maxRelations: 1
+  minRelations: 1
+  selectionLabel: 'Select item'
+  showCardsInGrid: false
+  showSiteMenu: true
+  showUnpermittedEntries: true
+  showUnpermittedSections: true
+  sources:
+    - 'section:cbc74f9b-3359-4b4e-93e9-3b3e46c34e90' # Library
+  targetSiteId: null
+  validateRelatedElements: false
+  viewMode: list
+translationKeyFormat: null
+translationMethod: none
+type: craft\fields\Entries
