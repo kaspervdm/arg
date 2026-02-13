@@ -4,6 +4,10 @@
     overflow: clip;
 }
 
+.is-hidden {
+    visibility: hidden;
+}
+
 .hero-home__content {
     justify-content: flex-start;
     align-items: flex-end;
