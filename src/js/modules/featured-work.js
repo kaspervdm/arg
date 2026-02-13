@@ -11,15 +11,119 @@ export default class FeaturedWork {
         this.items = this.el.querySelectorAll("[data-work-item]");
         this.head = this.el.querySelector(".home__work__head");
         if (this.head) this._initHeadReveal();
+        this.footer = this.el.querySelector(".home__work__footer");
+        if (this.footer) this._initFooterReveal();
         this.titleEl = this.el.querySelector("[data-work-bg-title]");
         if (this.items.length) {
-            this._initItemsReveal();
-            this._initImageParallax();
+            this._initScrollAlignTimeline();
         }
     }
 
     _setTitle(title) {
         if (this.titleEl) this.titleEl.textContent = title;
+    }
+
+    /**
+     * Scroll-scrubbed timeline: all items start at 100svh (off-screen) and animate to 0
+     * at the same speed. Each item starts at a different time in the timeline (delayOffsets)
+     * so easing (ease-out) looks the same for every item. Parallax scrubs with the timeline.
+     */
+    _initScrollAlignTimeline() {
+        // Delay offset per item, normalized 0–1 (order matches .home__work__item--1 … --5)
+        const delayOffsets = [0, 0.2, 0.6, 0, 0.4];
+        const offsets = Array.from(this.items).map((_, i) => delayOffsets[i] ?? 0);
+        // Reserve last 20% of timeline for the travel so all items fit
+        const normalizedStarts = offsets.map((o) => o * 0.7);
+        const travelDuration = 0.2;
+
+        // First item starts below for slide-in; rest start off-screen (100svh)
+        this.items.forEach((item, i) => {
+            gsap.set(item, { y: i === 0 ? "50svh" : "100svh" });
+        });
+
+        // First item: slide up from bottom when section top hits center (no scrub)
+        const firstItem = this.items[0];
+        if (firstItem) {
+            gsap.to(firstItem, {
+                y: 0,
+                duration: 0.8,
+                ease: "custom(0.33, 0, 0.2, 1)",
+                scrollTrigger: {
+                    trigger: this.el,
+                    start: "top 50%",
+                    toggleActions: "play none none none",
+                },
+            });
+        }
+
+        // Initial image parallax state
+        this.items.forEach((item) => {
+            const imageWrapper = item.querySelector(".home__work__image");
+            const image = imageWrapper?.querySelector("img");
+            if (image) gsap.set(image, { yPercent: -15 });
+        });
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: this.el,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true,
+            },
+        });
+
+        this.items.forEach((item, i) => {
+            const startTime = normalizedStarts[i];
+
+            // Item vertical travel (skip first)
+            if (i !== 0) {
+                tl.to(
+                    item,
+                    {
+                        y: 0,
+                        duration: travelDuration,
+                        ease: "custom(0.33, 0, 0.2, 1)",
+                    },
+                    startTime,
+                );
+
+                // Parallax: image yPercent tied to same scroll progress
+                const imageWrapper = item.querySelector(".home__work__image");
+                const image = imageWrapper?.querySelector("img");
+                if (image) {
+                    tl.to(
+                        image,
+                        {
+                            yPercent: 0,
+                            duration: travelDuration,
+                            ease: "none",
+                        },
+                        startTime,
+                    );
+                }
+            }
+        });
+
+        // First item parallax: section entering view (el top: bottom → top of viewport)
+        const firstImage = firstItem?.querySelector(".home__work__image img");
+        if (firstImage) {
+            gsap.fromTo(
+                firstImage,
+                { yPercent: -15 },
+                {
+                    yPercent: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: this.el,
+                        start: "top bottom",
+                        end: "top top",
+                        scrub: true,
+                    },
+                },
+            );
+        }
+
+        ScrollTrigger.refresh();
     }
 
     _initHeadReveal() {
@@ -52,66 +156,49 @@ export default class FeaturedWork {
                     duration: 0.65,
                     ease: "back.out(1.4)",
                 },
-                "-=0.5"
+                "-=0.5",
             )
-            .to(lineEl, {
-                scaleX: 1,
-                duration: 0.8,
-                ease: "power2.inOut",
-            }, "-=0.6");
+            .to(
+                lineEl,
+                {
+                    scaleX: 1,
+                    duration: 0.8,
+                    ease: "power2.inOut",
+                },
+                "-=0.6",
+            );
 
         ScrollTrigger.refresh();
     }
 
-    _initItemsReveal() {
-        this.items.forEach((item) => {
-            // Set initial state - clipped inset
-            gsap.set(item, { clipPath: "inset(50%)" });
+    /**
+     * Reveal the footer button with scale when this.el bottom hits the bottom of the viewport.
+     * Button is non-interactive (no click/hover) until fully revealed.
+     */
+    _initFooterReveal() {
+        const button = this.footer.querySelector(".btn");
+        if (!button) return;
 
-            // Animate clip-path to reveal on scroll
-            gsap.to(item, {
-                clipPath: "inset(0%)",
-                duration: 2,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top 90%",
-                    toggleActions: "play none none none",
-                },
-            });
+        gsap.set(button, { opacity: 0, yPercent: 100 });
+
+        const tween = gsap.to(button, {
+            opacity: 1,
+            yPercent: 0,
+            duration: 0.5,
+            ease: "power1.out",
+            paused: true,
+            onComplete: () => button.classList.add("is-revealed"),
+            onReverseComplete: () => button.classList.remove("is-revealed"),
         });
-    }
 
-    _initImageParallax() {
-        // Skip first item - it will be set up after reveal animation
-        this.items.forEach((item, index) => {
-            this._setupImageParallax(item);
+        ScrollTrigger.create({
+            trigger: this.el,
+            start: "bottom bottom+=40%",
+            onEnter: () => tween.play(),
+            onLeaveBack: () => tween.reverse(),
         });
-    }
 
-    _setupImageParallax(item) {
-        const imageWrapper = item.querySelector(".home__work__image");
-        const image = imageWrapper?.querySelector("img");
-        if (!image) return;
-
-        // Subtle parallax: image moves from -5% to +5% vertically
-        // as the item scrolls through the viewport
-        gsap.fromTo(
-            image,
-            {
-                yPercent: -15,
-            },
-            {
-                yPercent: 0,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: imageWrapper,
-                    start: "top bottom",
-                    end: "top top+=10%",
-                    scrub: true,
-                },
-            }
-        );
+        ScrollTrigger.refresh();
     }
 }
 

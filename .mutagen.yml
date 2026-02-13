@@ -1,0 +1,23 @@
+sync:
+  defaults:
+    ignore:
+      vcs: true
+      paths:
+        - .git
+        - .idea
+        - node_modules
+        - vendor
+        - .env
+        - .DS_Store
+    mode: "two-way-resolved"
+    maxEntryCount: 1000000
+    maxStagingFileSize: "1GB"
+    symlink:
+      mode: "portable"
+
+  craftcms:
+    alpha: "."
+    beta: "docker://craftcms/web"
+    configuration:
+      upload_dirs:
+        - web/uploads

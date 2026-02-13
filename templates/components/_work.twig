@@ -8,44 +8,41 @@
 {% if projects|length %}
 
 <section class="home__work padding-global" data-featured-work>
-    <div class="home__work__sticky">
+    <div class="home__work__grid">
         <header class="home__work__head">
             <span class="home__work__head-line" aria-hidden="true"></span>
             <span class="home__work__label">
                 <span class="home__work__label-dot" aria-hidden="true"></span>
                 <span class="home__work__label-text">
-                    <span class="home__work__label-inner">geselecteerd werk</span>
+                    <span class="home__work__label-inner">geselecteerde realisaties</span>
                 </span>
             </span>
         </header>
 
-        <div class="home__work__grid">
-            {% for project in projects|slice(0, 5) %}
-                {% set workTitle = project.workTitle|default(project.title|slice(0, 1) ~ '_' ~ (project.title|slice(1, 1)|default(project.title|slice(0, 1)))) %}
-                <article class="home__work__item" data-work-item data-work-title="{{ workTitle }}">
-                    <a class="home__work__link" href="{{ project.url ?? '#' }}">
-                        <div class="home__work__image">
-                            {% if project.image is defined and project.image %}
-                                {% if project.image starts with 'http' %}
-                                    <img class="img img--cover lazyload" data-src="{{ project.image }}" alt="{{ project.title }}" />
-                                {% else %}
-                                    {% include "primitives/_picture" with {
-                                        image: project.image,
-                                        cover: true,
-                                    } %}
-                                {% endif %}
+        {% for project in projects|slice(0, 5) %}
+            {% set workTitle = project.workTitle|default(project.title|slice(0, 1) ~ '_' ~ (project.title|slice(1, 1)|default(project.title|slice(0, 1)))) %}
+            <article class="home__work__item home__work__item--{{ loop.index }}" data-work-item data-work-title="{{ workTitle }}">
+                <a class="home__work__link" href="{{ project.url ?? '#' }}">
+                    <div class="home__work__image">
+                        {% if project.image is defined and project.image %}
+                            {% if project.image starts with 'http' %}
+                                <img class="img img--cover lazyload" data-src="{{ project.image }}" alt="{{ project.title }}" />
+                            {% else %}
+                                {% include "primitives/_picture" with {
+                                    image: project.image,
+                                    cover: true,
+                                } %}
                             {% endif %}
-                        </div>
-                        <h2 class="home__work__item-title">{{ project.workTitle }}</h2>
-                    </a>
-                </article>
-            {% endfor %}
-
-        </div>
+                        {% endif %}
+                    </div>
+                    <h2 class="home__work__item-title">{{ project.workTitle }}</h2>
+                </a>
+            </article>
+        {% endfor %}
 
         <div class="home__work__footer">
             <a class="btn btn--primary" href="{{ url('work') }}">
-                <span class="home__work__footer-link-text">Bekijk alle projecten</span>
+                <span class="home__work__footer-link-text">Bekijk alle realisaties</span>
             </a>
         </div>
     </div>
