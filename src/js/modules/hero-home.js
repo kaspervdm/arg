@@ -31,8 +31,8 @@ export default class HeroHome {
             start: "top top",
             end: "bottom top",
             onUpdate: (self) => {
-                this.imageEl.style.setProperty("--hero-scroll-darken", self.progress);
-                this.imageEl.style.setProperty("--hero-image-y", `${self.progress * -40}%`);
+                this.imageEl.style.setProperty("--hero-scroll-darken", self.progress * 2);
+                this.imageEl.style.setProperty("--hero-image-y", `${self.progress * -160}%`);
                 this.el.classList.toggle("is-hidden", self.progress >= 1);
             },
         });

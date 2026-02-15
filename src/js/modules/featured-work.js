@@ -13,6 +13,7 @@ export default class FeaturedWork {
         if (this.head) this._initHeadReveal();
         this.footer = this.el.querySelector(".home__work__footer");
         if (this.footer) this._initFooterReveal();
+        this._initButtonHover();
         this.titleEl = this.el.querySelector("[data-work-bg-title]");
         if (this.items.length) {
             this._initScrollAlignTimeline();
@@ -172,20 +173,20 @@ export default class FeaturedWork {
     }
 
     /**
-     * Reveal the footer button with scale when this.el bottom hits the bottom of the viewport.
+     * Reveal the footer button with a clip-path (slides in from below its base) when this.el bottom hits the bottom of the viewport.
      * Button is non-interactive (no click/hover) until fully revealed.
      */
     _initFooterReveal() {
         const button = this.footer.querySelector(".btn");
         if (!button) return;
 
-        gsap.set(button, { opacity: 0, yPercent: 100 });
+        gsap.set(button, { clipPath: "inset(0% 0% 100% 0%)", yPercent: 100 });
 
         const tween = gsap.to(button, {
-            opacity: 1,
+            clipPath: "inset(0% 0% 0% 0%)",
             yPercent: 0,
             duration: 0.5,
-            ease: "power1.out",
+            ease: "custom(0.33, 0, 0.2, 1)",
             paused: true,
             onComplete: () => button.classList.add("is-revealed"),
             onReverseComplete: () => button.classList.remove("is-revealed"),
@@ -199,6 +200,41 @@ export default class FeaturedWork {
         });
 
         ScrollTrigger.refresh();
+    }
+
+    _initButtonHover() {
+        const btn = this.el.querySelector("a.btn--primary");
+        const track = btn?.querySelector(".btn__text-track");
+        const arrow = btn?.querySelector(".btn__arrow-right");
+        if (!track) return;
+
+        btn.addEventListener("mouseenter", () => {
+            gsap.set(track, { yPercent: 0 });
+            gsap.to(track, {
+                yPercent: -50,
+                duration: 0.35,
+                ease: "power2.out",
+            });
+            if (arrow) {
+                gsap.to(arrow, {
+                    x: "170%",
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+            }
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            if (arrow) {
+                gsap.set(arrow, { x: "-50%", opacity: 0 });
+                gsap.to(arrow, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+            }
+        });
     }
 }
 

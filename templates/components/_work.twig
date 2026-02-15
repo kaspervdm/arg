@@ -42,7 +42,15 @@
 
         <div class="home__work__footer">
             <a class="btn btn--primary" href="{{ url('work') }}">
-                <span class="home__work__footer-link-text">Bekijk alle realisaties</span>
+                <span class="btn__text-inner">
+                    <span class="btn__text-track">
+                        <span class="btn__text">Bekijk alle realisaties</span>
+                        <span class="btn__text" aria-hidden="true">Bekijk alle realisaties</span>
+                    </span>
+                </span>
+                <div class="btn__arrow-right">
+                    {{ svg("static/icons/arrow-right.svg")|attr({ class: "svg svg--auto" }) }}
+                </div>
             </a>
         </div>
     </div>
