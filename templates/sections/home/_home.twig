@@ -5,6 +5,7 @@
     {% include "components/_hero-home" with {
         title: entry.titleMultiline,
         image: entry.image.one(),
+        featuredImage: entry.image.one(),
     } %}
 
     <div class="home__manifesto padding-global" data-manifesto>
@@ -22,6 +23,8 @@
         { title: 'Forum Central', workTitle: 'Woning F_C', url: '#', image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&h=800&fit=crop' },
     ] %}
     {% include "components/_work" with { projects: workProjects } %}
+
+     {% include "components/_services" %}
 
     {% include "components/_content-blocks" with {
         blocks: entry.contentBlocks

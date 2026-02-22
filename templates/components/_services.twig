@@ -1,0 +1,36 @@
+{#
+    Services / Expertises block: label on the left, numbered list of services on the right.
+    Expects: services (array of { label, url }). Defaults to 6 expertises if not passed.
+#}
+
+{% set services = services|default([
+    { label: 'Nieuwbouw', url: '#' },
+    { label: 'Verbouwing', url: '#' },
+    { label: 'Interieur', url: '#' },
+    { label: 'Projecten', url: '#' },
+    { label: 'Renovatie', url: '#' },
+    { label: 'Publiek', url: '#' },
+]) %}
+
+<section class="services padding-global">
+    <div class="services__inner">
+        <header class="services__head">
+            <span class="services__label-dot" aria-hidden="true"></span>
+            <span class="services__label-text">Expertises</span>
+        </header>
+
+        <ul class="services__list" role="list">
+            {% for item in services %}
+                <li class="services__item">
+                    <a class="services__link" href="{{ item.url }}">
+                        <span class="services__number">({% if loop.index < 10 %}0{% endif %}{{ loop.index }})</span>
+                        <span class="services__label">{{ item.label }}</span>
+                        <span class="services__item-arrow" aria-hidden="true">
+                            {{ svg("static/icons/arrow-right.svg")|attr({ class: "svg svg--auto" }) }}
+                        </span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>

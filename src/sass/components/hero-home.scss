@@ -9,11 +9,12 @@
 }
 
 .hero-home__content {
-    justify-content: flex-start;
     align-items: flex-end;
     width: 100%;
     height: 100svh;
-    display: flex;
+    padding: var(--padding-global);
+    display: grid;
+    grid-template-columns: auto 25rem 10rem;
     position: sticky;
     top: 0;
     overflow: hidden;
@@ -53,7 +54,7 @@
         position: absolute;
         inset: 0;
         background:
-            linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.15) 35%, transparent 55%),
+            linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.15) 35%, transparent 55%),
             linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 35%, transparent 55%);
         mix-blend-mode: multiply;
         pointer-events: none;
@@ -81,12 +82,13 @@
 }
 
 .hero-home__title-wrap {
-    margin: var(--padding-global);
+    //margin: var(--padding-global);
     z-index: 1;
 }
 
 .hero-home__title {
     color: var(--c-light);
+    margin-bottom: -0.25em;
 }
 
 .hero-home__title-line {
@@ -99,4 +101,130 @@
     display: block;
     padding-bottom: 0.2em;
     margin-top: -0.05em;
+}
+
+// Featured project widget — bottom right
+.hero-home__featured {
+    grid-row: 1;
+    grid-column: 2;
+    z-index: 1;
+    background: var(--c-white);
+    color: var(--c-dark);
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+
+    &__image-wrap {
+        aspect-ratio: 1 / 1;
+        height: 6rem;
+        width: 6rem;
+        overflow: hidden;
+        background: #111;
+
+        .picture {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            .img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__caption {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 0.2em 0;
+        font-size: var(--fs-heading-4);
+        font-weight: var(--fw-strong);
+    }
+
+    &__caption-cta {
+        position: relative;
+        font-size: var(--fs-small);
+        font-weight: var(--fw-strong);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+
+        // Dot: visible on hover (same as primary button)
+        &::before {
+            content: "";
+            position: absolute;
+            right: 1.1em;
+            width: 0.35em;
+            height: 0.35em;
+            border-radius: 50%;
+            background-color: currentColor;
+            opacity: 0;
+            transform: scale(0);
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
+        }
+    }
+
+    &:hover &__caption-cta::before {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    &__caption-cta .btn__text-inner {
+        display: block;
+        height: 1.15em;
+        overflow: hidden;
+        clip-path: inset(0);
+        line-height: 1;
+    }
+
+    &__caption-cta .btn__text-track {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__caption-cta .btn__text {
+        display: block;
+        flex-shrink: 0;
+        padding-block: 0.05em;
+    }
+
+    &__caption-cta .btn__arrow-right {
+        position: absolute;
+        right: 0.8em;
+        bottom: 0.075em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: 1em;
+    }
+
+    &__caption-cta .btn__arrow-right svg {
+        width: auto;
+        height: 0.7em;
+    }
+}
+
+.hero-home__scroll-indicator {
+    grid-row: 1;
+    grid-column: 3;
+    justify-self: end;
+    font-size: var(--fs-small);
+    font-weight: var(--fw-strong);
+    color: var(--c-light);
 }

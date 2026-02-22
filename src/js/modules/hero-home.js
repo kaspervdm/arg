@@ -13,6 +13,8 @@ export default class HeroHome {
         this.imageEl = this.el.querySelector(".hero-home__image");
         if (this.imageEl) this._initScrollDarken();
 
+        this._initFeaturedHover();
+
         this.titleWrap = this.el.querySelector(".hero-home__title-wrap");
         this.titleEl = this.el.querySelector("[data-hero-home-title]");
         if (!this.titleWrap || !this.titleEl) return;
@@ -75,6 +77,45 @@ export default class HeroHome {
         });
 
         ScrollTrigger.refresh();
+    }
+
+    _initFeaturedHover() {
+        // Use delegation so we always attach to the hero and resolve featured on each event
+        this.el.addEventListener("mouseover", (e) => {
+            const btn = e.target.closest(".hero-home__featured");
+            if (!btn || e.relatedTarget && btn.contains(e.relatedTarget)) return;
+            const track = btn.querySelector(".btn__text-track");
+            const arrow = btn.querySelector(".btn__arrow-right");
+            if (!track) return;
+            gsap.set(track, { yPercent: 0 });
+            gsap.to(track, {
+                yPercent: -50,
+                duration: 0.35,
+                ease: "power2.out",
+            });
+            if (arrow) {
+                gsap.to(arrow, {
+                    x: "170%",
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+            }
+        });
+
+        this.el.addEventListener("mouseout", (e) => {
+            const btn = e.target.closest(".hero-home__featured");
+            if (!btn || e.relatedTarget && btn.contains(e.relatedTarget)) return;
+            const arrow = btn.querySelector(".btn__arrow-right");
+            if (arrow) {
+                gsap.set(arrow, { x: "-50%", opacity: 0 });
+                gsap.to(arrow, {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.4,
+                    ease: "power2.out",
+                });
+            }
+        });
     }
 }
 

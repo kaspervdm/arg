@@ -2,6 +2,7 @@
 
 {% set title = title ??? null %}
 {% set image = image.one() ??? image ??? null %}
+{% set featuredImage = featuredImage.one() ??? featuredImage ??? null %}
 
 {# Output #}
 
@@ -20,6 +21,33 @@
                     } %}
                 </div>
             {% endif %}
+
+            {% if featuredImage %}
+                <a href="{{ url('work') }}" class="hero-home__featured">
+                    <span class="hero-home__featured__image-wrap">
+                        {% include 'primitives/_picture' with {
+                            image: featuredImage,
+                            transform: { width: 600 },
+                        } %}
+                    </span>
+                    <span class="hero-home__featured__caption">
+                        <span class="hero-home__featured__caption-title">Project<br> in de kijker</span>
+                        <span class="hero-home__featured__caption-cta">
+                            <span class="btn__text-inner">
+                                <span class="btn__text-track">
+                                    <span class="btn__text">Bekijk meer</span>
+                                    <span class="btn__text" aria-hidden="true">Bekijk meer</span>
+                                </span>
+                            </span>
+                            <div class="btn__arrow-right">
+                                {{ svg("static/icons/arrow-right.svg")|attr({ class: "svg svg--auto" }) }}
+                            </div>
+                        </span>
+                    </span>
+                </a>
+            {% endif %}
+
+            <div class="hero-home__scroll-indicator">(Scroll)</div>
         </div>
         <div class="hero-home__spacer"></div>
     </div>

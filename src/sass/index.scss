@@ -22,6 +22,7 @@
 @use "./components/hero-home" as *;
 @use "./components/cards/project" as *;
 @use "./components/work" as *;
+@use "./components/services" as *;
 
 //blocks
 @use "./blocks/image.scss" as *;

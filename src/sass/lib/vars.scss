@@ -3,9 +3,10 @@
 
 :root {
     // COLORS
-    --c-brand: #86ff5b;
-    --c-light: #ffffff;
-    --c-dark: #151f26;
+    --c-brand: #ff0000;
+    --c-white: #ffffff;
+    --c-light: var(--c-white);
+    --c-dark: #151718;
     --c-text: var(--c-dark);
     --c-accent: var(--c-brand);
 
